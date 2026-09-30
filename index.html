@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Next Level — Guide de démarrage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05070f;
+    --card: rgba(6,12,26,0.82);
+    --card-border: #1c3455;
+    --chalk: #eaf6ff;
+    --muted: #6483a8;
+    --amber: #3ecbff;
+    --amber-glow: rgba(62,203,255,0.55);
+    --magenta: #9d6bff;
+    --teal: #5ff0d4;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(circle at 50% -10%, rgba(62,203,255,0.12), transparent 55%),
+      repeating-linear-gradient(90deg, rgba(62,203,255,0.045) 0px, rgba(62,203,255,0.045) 1px, transparent 1px, transparent 42px),
+      repeating-linear-gradient(0deg, rgba(62,203,255,0.045) 0px, rgba(62,203,255,0.045) 1px, transparent 1px, transparent 42px);
+    color: var(--chalk);
+    min-height: 100%;
+    line-height: 1.5;
+  }
+  .nl-display {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--amber-glow);
+  }
+  .nl-mono { font-family: 'Share Tech Mono', monospace; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 20px 14px;
+    background: linear-gradient(180deg, rgba(15,26,48,0.95), rgba(5,7,15,0.9));
+    border-bottom: 1px solid var(--card-border);
+    backdrop-filter: blur(6px);
+  }
+  header .title { font-size: 1.1rem; letter-spacing: 2px; }
+  nav { display: flex; gap: 14px; }
+  nav a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  nav a:active, nav a:focus-visible { color: var(--teal); }
+
+  main { max-width: 560px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  .hero { text-align: center; margin-bottom: 28px; }
+  .hero h1 { font-size: 1.9rem; margin: 0 0 6px; }
+  .hero p { color: var(--muted); margin: 0; font-size: 1rem; }
+
+  .cta {
+    display: block;
+    text-align: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--bg);
+    background: var(--teal);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 1.05rem;
+    box-shadow: 0 0 22px rgba(95,240,212,0.35);
+    margin: 24px 0 36px;
+    transition: transform 0.15s ease;
+  }
+  .cta:active { transform: scale(0.97); }
+
+  h2.section-title {
+    font-size: 1rem;
+    color: var(--teal);
+    margin: 0 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 80px;
+  }
+  section + section { margin-top: 40px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .card h3 svg { flex-shrink: 0; }
+  .card p, .card li { color: var(--chalk); font-size: 0.96rem; margin: 0; }
+  .card ol { margin: 0; padding-left: 20px; }
+  .card ol li { margin-bottom: 8px; }
+  .card ol li:last-child { margin-bottom: 0; }
+  .card .note { color: var(--muted); font-size: 0.86rem; margin-top: 10px; }
+  .card strong { color: var(--teal); font-weight: 600; }
+
+  .platform-tag {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 48px;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="title nl-display">NEXT LEVEL</span>
+  <nav>
+    <a href="#install">Installation</a>
+    <a href="#comment-ca-marche">Fonctionnement</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="hero">
+    <h1 class="nl-display">Guide de démarrage</h1>
+    <p>Installe l'appli et découvre comment elle fonctionne.</p>
+  </div>
+
+  <a class="cta" href="https://next-level-app-2026.netlify.app" target="_blank" rel="noopener">▶ Ouvrir l'application</a>
+
+  <section id="install">
+    <h2 class="section-title nl-mono">// INSTALLATION</h2>
+
+    <div class="card">
+      <span class="platform-tag">IPHONE — SAFARI</span>
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
+        Ajouter à l'écran d'accueil
+      </h3>
+      <ol>
+        <li>Ouvre le lien ci-dessus dans <strong>Safari</strong> (pas Chrome).</li>
+        <li>Appuie sur l'icône <strong>Partager</strong> (le carré avec la flèche vers le haut).</li>
+        <li>Fais défiler et choisis <strong>Sur l'écran d'accueil</strong>.</li>
+        <li>Appuie sur <strong>Ajouter</strong> en haut à droite.</li>
+      </ol>
+      <p class="note">L'ajout à l'écran d'accueil ne fonctionne que depuis Safari.</p>
+    </div>
+
+    <div class="card">
+      <span class="platform-tag">ANDROID — CHROME</span>
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
+        Installer l'application
+      </h3>
+      <ol>
+        <li>Ouvre le lien ci-dessus dans <strong>Chrome</strong>.</li>
+        <li>Appuie sur le menu (les trois points en haut à droite).</li>
+        <li>Choisis <strong>Ajouter à l'écran d'accueil</strong> ou <strong>Installer l'application</strong>.</li>
+        <li>Confirme avec <strong>Ajouter</strong> / <strong>Installer</strong>.</li>
+      </ol>
+      <p class="note">Une icône Next Level apparaît ensuite sur ton écran, comme une appli normale.</p>
+    </div>
+  </section>
+
+  <section id="comment-ca-marche">
+    <h2 class="section-title nl-mono">// FONCTIONNEMENT</h2>
+
+    <div class="card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--magenta)" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Se connecter
+      </h3>
+      <p>Choisis un <strong>pseudo</strong> et un <strong>code à 4 chiffres</strong> à ta première visite — retiens-les bien, ils te permettent de retrouver ton profil depuis n'importe quel téléphone.</p>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.6h7.6z"/></svg>
+        XP et niveaux
+      </h3>
+      <p>Chaque semaine de travail fait progresser ton personnage : plus tu t'entraînes et tiens tes objectifs, plus tu gagnes d'<strong>XP</strong>, et plus ton <strong>niveau</strong> grimpe.</p>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--magenta)" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+        Les objectifs
+      </h3>
+      <p>Ton entraîneur fixe des objectifs, à cocher au fur et à mesure. C'est le cœur de ta progression : chaque objectif tenu fait avancer ton personnage.</p>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a2 2 0 0 0 2 4M17 6h3a2 2 0 0 1-2 4"/></svg>
+        Battle global du samedi
+      </h3>
+      <p>Chaque samedi, un tournoi met en confrontation tous les élèves inscrits, tous entraîneurs confondus — l'occasion de voir où tu te situes dans la semaine.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>Pour bien démarrer :</strong> sois régulier plutôt qu'intense d'un coup — la progression est pensée sur la durée, semaine après semaine.</p>
+    </div>
+  </section>
+
+  <footer class="nl-mono">NEXT LEVEL</footer>
+
+</main>
+
+</body>
+</html>
